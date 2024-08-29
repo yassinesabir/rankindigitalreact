@@ -31,17 +31,20 @@ const LeadStatusBoard = () => {
         mutationFn: async (updatedLead) => {
             console.log('Updating lead on server:', updatedLead);
             try {
-                const response = await axiosInstance.put(`/leads/${updatedLead.id}/status-label`, {
+                // Ensure the API endpoint and payload match your backend
+                const response1 = await axiosInstance.patch(`Lead/${updatedLead.id}`, updatedLead);
+                console.log('Lead updated successfully:', response1.data);
+                const response2 = await axiosInstance.put(`/leads/${updatedLead.id}/status-label`, {
                     statusLabel: updatedLead.statusLabel,
                 });
-                console.log('Lead updated successfully:', response.data);
-                return response.data;
+                return response1.data && response2.data;
             } catch (error) {
                 console.error('Error updating lead data', error);
                 throw error;
             }
         },
         onSuccess: () => {
+            // Refetch leads data after successful mutation
             queryClient.invalidateQueries(['leads']);
         },
         onError: (error) => {

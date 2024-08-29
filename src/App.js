@@ -7,7 +7,7 @@ import Dashboard from './pages/dashboard/Dashboard';
 import NoMatch from './pages/noMatch/NoMatch';
 import PostLead from './pages/lead/PostLead';
 import UpdateLead from './pages/lead/UpdateLead';
-import UseLeads from './pages/dashboard/LeadsByUser';
+import UserLeads from './pages/dashboard/LeadsByUser';
 import Statuts from './pages/leadsStatutBoard/LeadStatusBoard';
 import LeadDetails from './pages/lead/leadDetails.js';
 
@@ -23,7 +23,7 @@ function App() {
           <Route path='*' element={<NoMatch />} />
           <Route path='/Lead' element={<PostLead />} />
           <Route path='/Lead/:id' element={<UpdateLead />} />
-          <Route path='/Leads' element={<UseLeads />} />
+          <Route path='/Leads' element={<UserLeads />} />
           <Route path='/Statuts' element={<Statuts />} />
           <Route path="/lead/:leadId/details" element={<LeadDetails />} />
         </Routes>
