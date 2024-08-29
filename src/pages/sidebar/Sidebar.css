@@ -1,0 +1,93 @@
+/* Sidebar styling */
+.sidebar {
+  height: calc(100vh - 56px); /* Adjust based on header height */
+  position: fixed;
+  top: 60px; /* Adjust based on header height */
+  left: 0;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s; /* Smooth transition for expanding/collapsing */
+  overflow: hidden; /* Hide overflow to prevent scrollbars */
+}
+
+/* Ensure sidebar background covers the full width */
+.sidebar.collapsed {
+  width: 90px; /* Collapsed width */
+}
+
+.sidebar.expanded {
+  width: 180px; /* Expanded width */
+}
+
+/* Full width for the menu container */
+.sidebar .ant-menu {
+  flex: 1; /* Take up available space */
+  background: #ffffff; /* Ensure background color */
+  border: none; /* Remove default borders */
+  overflow: auto; /* Allow scrolling if content overflows */
+  margin: 0; /* Remove margin */
+  min-width: 90px; /* Collapsed width */
+  max-width: 180px;
+}
+
+/* Ensure menu items have proper height and positioning */
+.sidebar .ant-menu-item {
+  position: relative; /* Enable absolute positioning for child elements */
+  height: 48px; /* Consistent height */
+  padding: 0; /* Remove default padding */
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+/* Style the icon images */
+.sidebar .ant-menu-item img {
+  position: absolute; /* Use absolute positioning to place the icon */
+  left: 26px; /* Adjust based on your layout */
+  width: 24px; /* Ensure icon fits within the item */
+  height: 24px; /* Ensure icon fits within the item */
+  margin: 0;
+}
+
+/* Custom highlight color for selected menu item with lifted effect */
+.sidebar .ant-menu-item-selected {
+  background-color: #e9f0fa !important; /* Light grey background */
+  color: #000; /* Adjust text color if needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  border-radius: 4px; /* Optional: rounded corners */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for transform and shadow */
+  padding-left: 40px; /* Add padding to accommodate icon */
+}
+
+.sidebar .ant-menu-item-selected:hover {
+  background-color: #e9f0fa !important; /* Slightly darker grey on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+  position: absolute;
+  bottom: 16px; /* Position at the bottom */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff; /* Match background color */
+  color: #000; /* Static black color */
+  border: none; /* Remove default border */
+  font-weight: 600; /* Semi-bold font weight */
+  font-size: 18px; /* Adjust font size as needed */
+}
+
+/* Ensure button does not change color on hover */
+.sidebar-toggle:hover {
+  color: #000; /* Static black color */
+  background-color: #ffffff; /* Match background color */
+}

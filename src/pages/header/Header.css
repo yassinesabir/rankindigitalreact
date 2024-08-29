@@ -1,0 +1,104 @@
+/* Header Styling */
+.ant-header {
+  background-color: #875EF8; /* Background color */
+  position: fixed; /* Fix the header to the top */
+  top: 0; /* Stick it to the top */
+  left: 0; /* Stick it to the left edge */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it stays above other content */
+  height: 60px; /* Fixed height for the header */
+  display: flex; /* Use flexbox to align content */
+  align-items: center; /* Center items vertically */
+  padding: 0 24px; /* Padding for content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+
+/* Logo Styling */
+.ant-header .logo {
+  flex: 1; /* Take up available space */
+  margin-left: 200px;
+}
+
+.logo-link {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none; /* Remove underline */
+}
+
+/* User Info Styling */
+.user-info {
+  margin-left: auto; /* Push the user info to the right */
+}
+
+.user-name-button {
+  color: white; /* White text color */
+  border: none; /* Remove default button border */
+  background: none; /* Remove default button background */
+  font-size: 16px; /* Adjust font size as needed */
+  margin-right: 185px;
+}
+
+/* Modal Styling */
+.custom-modal .ant-modal-content {
+  border-radius: 12px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+}
+
+.custom-modal .ant-modal-header {
+  border-bottom: none;
+  color: #0c0c0c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  text-align: center;
+  padding: 1rem 1rem;
+}
+
+.custom-modal .ant-modal-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.custom-modal .ant-modal-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.custom-modal .ant-modal-footer {
+  border-top: none;
+  padding: 15px 20px;
+  justify-content: center;
+}
+
+.custom-modal .ant-btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+/* User Details Styling */
+.user-details p {
+  font-size: 1rem;
+  color: #333;
+  margin: 8px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user-details p strong {
+  color: #0c0c0c;
+}
+
+.logo {
+  /* Adjust styling to suit your design */
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  max-height: 150px; /* Adjust height as needed */
+}

@@ -1,0 +1,13 @@
+.swipeable-row {
+    transition: background-color 0.3s ease;
+    background-color: rgb(221, 219, 219); /* Default background color */
+  }
+  
+  .swiping-left {
+    background-color: red; /* Solid red background for swiping left */
+  }
+  
+  .swiping-right {
+    background-color: green; /* Solid green background for swiping right */
+  }
+  

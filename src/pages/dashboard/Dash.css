@@ -1,0 +1,181 @@
+:root {
+    --bg-color: #F3F5FB;
+    --header-bg-color: #F7F9FC;
+    --border-color: #f5f2f2;
+    --highlight-bg-color: #f5f5f5;
+    --pagination-active-bg: #F7F9FC;
+    --pagination-active-text: #9197a7;
+    --button-bg-color: #00850D;
+    --search-bar-bg-color: #FDA700;
+    --search-bar-text-color: #FFFFFF;
+    --placeholder-text-color: #FFFFFF;
+    --toast-bg-color: #28a745; /* Success color for toast */
+  }
+  
+  h1.title {
+    margin-bottom: 20px;
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .buttons-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttons-container .btn {
+    margin-right: 10px;
+    background-color: var(--button-bg-color) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+  }
+  
+  .buttons-container .btn:hover,
+  .buttons-container .btn:focus {
+    background-color: var(--button-bg-color) !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  
+  .buttons-container .btn:active {
+    background-color: darken(var(--button-bg-color), 10%) !important;
+  }
+  
+  .search-bar {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  .search-bar .form-control {
+    background-color: var(--search-bar-bg-color) !important;
+    color: var(--search-bar-text-color) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  
+  .search-bar .form-control::placeholder {
+    color: var(--placeholder-text-color) !important;
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--button-bg-color) !important;
+    border-radius: 5px;
+  }
+  
+  .custom-table {
+    border-collapse: collapse;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border-top: 1px solid var(--border-color);
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    padding: 13.65px !important; /* Using !important to override other rules */
+  }
+  
+  .custom-table thead th {
+    background-color: var(--header-bg-color) !important;
+    color: #131313 !important;
+    border-top: 1px solid #ffffff;
+    font-weight: normal;
+  }
+  
+  .custom-table tbody td {
+    background-color: white !important;
+    color: #9197a7 !important;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: var(--highlight-bg-color) !important;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pagination .page-item .page-link {
+    padding: 5px 10px;
+    color: #000000 !important;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: var(--pagination-active-bg) !important;
+    border-color: var(--bg-color) !important;
+    color: var(--pagination-active-text) !important;
+  }
+  
+  .pagination .page-item .page-link:hover {
+    background-color: #E1E5EE !important;
+    border-color: #E1E5EE !important;
+  }
+  
+  .dropdown-toggle {
+    background-color: var(--button-bg-color) !important;
+    border: none !important;
+    color: #FFFFFF !important;
+  }
+  
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    background-color: var(--button-bg-color) !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  
+  .dropdown-menu {
+    background-color: white !important;
+    border: 1px solid var(--border-color) !important;
+  }
+  
+  .dropdown-item {
+    color: #000000 !important;
+  }
+  
+  .dropdown-item:hover {
+    background-color: var(--highlight-bg-color) !important;
+  }
+  
+  /* Toast Notification Styles */
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050; /* Make sure it's above other elements */
+  }
+  
+  .toast {
+    background-color: var(--toast-bg-color) !important;
+    color: #FFFFFF !important;
+    border: none;
+  }
+  
+  .toast-body {
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* Modal Styles */
+  .modal-dialog {
+    max-width: 500px;
+  }
+  
+  .modal-content {
+    border-radius: 8px;
+  }
+  

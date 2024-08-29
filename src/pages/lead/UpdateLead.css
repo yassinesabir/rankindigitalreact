@@ -1,0 +1,125 @@
+.update-lead-container {
+    margin-top: 105px !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-title {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-title h2 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #875EF8;
+    padding-bottom: 10px;
+}
+
+.update-lead-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.form-left, .form-right {
+    flex: 1;
+}
+
+.form-left {
+    margin-right: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-sizing: border-box; /* Ensures padding and border are included in height */
+    transition: none;
+}
+
+.form-group input,
+.form-group select {
+    height: 41px; /* Uniform height for input and select */
+}
+
+.form-group textarea {
+    min-height: 100px; /* Minimum height */
+    resize: vertical; /* Allow vertical resizing */
+    overflow-y: auto; /* Scrollbar for overflow */
+}
+
+/* Focus state for inputs and textarea */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #875EF8; /* Focus color */
+    outline: none;
+}
+
+/* Specific adjustments for the select element */
+.form-group select {
+    font-size: 13px; /* Smaller font size */
+    margin-top: 5px;
+}
+
+.file-button {
+    display: flex;
+    align-items: center;
+    background-color: #875EF8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px; /* Smaller padding */
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    height: 41px; /* Button height */
+    margin-top: 10px;
+}
+
+.download-icon {
+    font-size: 16px;
+    margin-right: 6px; /* Reduced space between icon and text */
+}
+
+.submit-button {
+    width: auto; /* Adjust width to fit content */
+    background-color: #875EF8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px; /* Smaller padding */
+    font-size: 14px; /* Smaller font size */
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    height: 41px; /* Button height */
+    margin-top: 20px;
+}
+
+.file-info {
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+}
