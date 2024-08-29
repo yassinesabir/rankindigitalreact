@@ -8,36 +8,38 @@
 
 /* Column styling */
 .status-column {
-    position: relative; /* To position the icon relative to this container */
-    flex: 0 0 19%; /* Adjust the width to make the containers smaller */
+    position: relative; /* Ensure relative positioning for the placeholder */
+    flex: 0 0 19%;
     margin: 0 10px;
     border: 1px solid #ddd;
     border-radius: 15px;
     padding: 15px;
-    background-color: hsl(0, 0%, 100%);
+    background-color: #fff; /* Use named color for better readability */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 200px; /* Ensure enough space for dragged items */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header styling */
 .status-column h3 {
-    text-align: left; /* Align the text to the left */
+    text-align: left;
     margin-bottom: 25px;
     font-size: 1.25em;
-    color: #000; /* Set header text color to black */
+    color: #000;
     margin-left: 3px;
 }
 
 /* Status icon styling */
 .status-icon {
-    position: absolute; /* Position the icon within the column */
-    top: 10px; /* Position it at the top-right corner */
-    right: 10px; /* Adjust the right margin */
-    width: 30px; /* Adjust the size as needed */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
     height: 30px;
-    border-radius: 50%; /* Make it rounded */
-    object-fit: cover; /* Cover the entire area */
+    border-radius: 50%;
+    object-fit: cover;
 }
-
 
 /* Lead item styling */
 .lead-item {
@@ -117,4 +119,21 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+/* Style for dragging items */
+.lead-item.dragging {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+    border: 1px solid #bbb;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+/* Placeholder for Droppable areas */
+.react-beautiful-dnd-placeholder {
+    position: absolute; /* Ensure correct positioning */
+    background-color: transparent;
+    border: 1px dashed #ddd;
+    height: 70px; /* Match the height of your draggable items */
+    z-index: 1; /* Ensure it appears above other content */
 }

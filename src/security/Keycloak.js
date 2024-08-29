@@ -2,7 +2,7 @@ import Keycloak from 'keycloak-js';
 
 const keycloak = new Keycloak({
     url: 'http://localhost:8080',
-    realm: 'RankinDigital_realm',
+    realm: 'RankinDigital',
     clientId: 'mini_crm_frontend', 
 });
 

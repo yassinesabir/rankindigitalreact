@@ -32,11 +32,19 @@ const PostLead = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        setFormData({
-            ...formData,
-            pdf: file // Handle file input
-        });
-        setFileName(file.name); // Set the name of the chosen file
+        if (file) {
+            setFormData({
+                ...formData,
+                pdf: file // Handle file input
+            });
+            setFileName(file.name); // Set the name of the chosen file
+        } else {
+            setFormData({
+                ...formData,
+                pdf: null
+            });
+            setFileName("");
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -66,6 +74,7 @@ const PostLead = () => {
             toast.success("Lead créé avec succès!");
             setTimeout(() => navigate("/"), 2000); // Delay redirect to show toast
         } catch (error) {
+            console.error('Error:', error); // Log error details
             toast.error("Erreur lors de la création du lead");
         }
     };
@@ -74,6 +83,7 @@ const PostLead = () => {
         <div className="post-lead-container">
             <h2>Ajouter Nouveau Lead</h2>
             <form onSubmit={handleSubmit}>
+                {/* Form fields here */}
                 <div className="form-row">
                     <div className="form-group">
                         <label htmlFor="formBasicNom">Nom Complet</label>

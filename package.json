@@ -14,6 +14,7 @@
     "keycloak": "^1.2.0",
     "keycloak-js": "^25.0.2",
     "react": "^18.3.1",
+    "react-beautiful-dnd": "^13.1.1",
     "react-bootstrap": "^2.10.4",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",

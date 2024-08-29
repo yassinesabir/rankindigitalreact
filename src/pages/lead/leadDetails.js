@@ -102,6 +102,10 @@ const LeadDetails = () => {
               <p>+212 {lead.telephone}</p>
             </div>
             <div className="details-group">
+              <label>Téléphone:</label>
+              <p>{lead.valeurEstimee} MAD</p>
+            </div>
+            <div className="details-group">
               <label>Description:</label>
               <div className="description-container">
                 <p>{lead.description}</p>
