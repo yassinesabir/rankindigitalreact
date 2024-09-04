@@ -1,19 +1,19 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import useAxios from '../../security/axiosInstance';
-import './LeadStatusBoard.css';
+import useAxios from '../../../security/axiosInstance';
+import '../../Admin/Status/LeadStatusBoard.css';
 
 // Import images
-import fImage from '../assets/Icons/a-image.png';
-import fourImage from '../assets/Icons/b-image.png';
-import nouveauIcon from '../assets/Icons/NouveauIcon.png';
-import enCoursIcon from '../assets/Icons/EnCoursIcon.png';
-import gagneIcon from '../assets/Icons/GagneIcon.png';
-import abandonnéIcon from '../assets/Icons/Abandonné.png';
+import yassine from '../../assets/Icons/a-image.png';
+import hasnaa from '../../assets/Icons/b-image.png';
+import nouveauIcon from '../../assets/Icons/NouveauIcon.png';
+import enCoursIcon from '../../assets/Icons/EnCoursIcon.png';
+import gagneIcon from '../../assets/Icons/GagneIcon.png';
+import abandonnéIcon from '../../assets/Icons/Abandonné.png';
 
 const fetchLeads = async (axiosInstance) => {
-    const response = await axiosInstance.get('/Leads');
+    const response = await axiosInstance.get('/user');
     return response.data;
 };
 
@@ -29,11 +29,8 @@ const LeadStatusBoard = () => {
 
     const mutation = useMutation({
         mutationFn: async (updatedLead) => {
-            console.log('Updating lead on server:', updatedLead);
             try {
-                // Ensure the API endpoint and payload match your backend
                 const response1 = await axiosInstance.patch(`Lead/${updatedLead.id}`, updatedLead);
-                console.log('Lead updated successfully:', response1.data);
                 const response2 = await axiosInstance.put(`/leads/${updatedLead.id}/status-label`, {
                     statusLabel: updatedLead.statusLabel,
                 });
@@ -44,7 +41,6 @@ const LeadStatusBoard = () => {
             }
         },
         onSuccess: () => {
-            // Refetch leads data after successful mutation
             queryClient.invalidateQueries(['leads']);
         },
         onError: (error) => {
@@ -53,21 +49,12 @@ const LeadStatusBoard = () => {
     });
 
     const handleLabelClick = (leadId, currentLabel) => {
-        console.log('Label clicked. Current label:', currentLabel);
-
         const LABELS = ["Normal", "Intéressant", "Fidèle"];
         const nextLabel = LABELS[(LABELS.indexOf(currentLabel) + 1) % LABELS.length];
-        console.log('Next label:', nextLabel);
-
         const leadToUpdate = leads.find(lead => lead.id === leadId);
-        if (!leadToUpdate) {
-            console.error('Lead not found:', leadId);
-            return;
-        }
+        if (!leadToUpdate) return;
 
         const updatedLead = { ...leadToUpdate, statusLabel: nextLabel };
-        console.log('Lead data to be updated:', updatedLead);
-
         mutation.mutate(updatedLead);
     };
 
@@ -87,47 +74,60 @@ const LeadStatusBoard = () => {
             statut: destination.droppableId,
         };
 
-        console.log('Updating lead status:', updatedLead);
-
         mutation.mutate(updatedLead);
     };
 
-    const renderLeadsByStatus = (status) => {
+    const calculateEstimatedValueSum = (status) => {
         return leads
             .filter(lead => lead.statut === status)
-            .map((lead, index) => (
-                <Draggable key={String(lead.id)} draggableId={String(lead.id)} index={index}>
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className={`lead-item ${snapshot.isDragging ? 'dragging' : ''}`}
-                        >
-                            <div className="lead-tag">{lead.tag || 'No Tag'}</div>
-                            <div className="lead-name">{lead.nom || 'No Name'}</div>
-                            <div className="lead-value">{lead.valeurEstimee || 'No Value'}</div>
-                            <div className="lead-footer">
-                                <span
-                                    className={`status-label ${lead.statusLabel ? lead.statusLabel.toLowerCase() : 'normal'}`}
-                                    onClick={() => handleLabelClick(lead.id, lead.statusLabel || 'Normal')}
-                                >
-                                    {lead.statusLabel || 'Normal'}
-                                </span>
-                                <div className="user-circle">
-                                    {lead.createdBy?.charAt(0).toUpperCase() === 'A' ? (
-                                        <img src={fImage} alt="A" />
-                                    ) : lead.createdBy?.charAt(0).toUpperCase() === 'B' ? (
-                                        <img src={fourImage} alt="B" />
-                                    ) : (
-                                        <div className="default-circle">{lead.createdBy?.charAt(0).toUpperCase() || '?'}</div>
-                                    )}
+            .reduce((sum, lead) => sum + (lead.valeurEstimee || 0), 0);
+    };
+
+    const renderLeadsByStatus = (status) => {
+        const leadsForStatus = leads.filter(lead => lead.statut === status);
+
+        return (
+            <>
+                <div className="total-value">
+                    <span className="line black">Valeur Totale Estimée:</span>
+                    <span className="line green">{calculateEstimatedValueSum(status)} MAD</span>
+                </div>
+
+                {leadsForStatus.map((lead, index) => (
+                    <Draggable key={String(lead.id)} draggableId={String(lead.id)} index={index}>
+                        {(provided, snapshot) => (
+                            <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                className={`lead-item ${snapshot.isDragging ? 'dragging' : ''}`}
+                            >
+                                <div className="lead-tag">{lead.tag || 'No Tag'}</div>
+                                <div className="lead-name">{lead.nom || 'No Name'}</div>
+                                <div className="lead-value">{lead.valeurEstimee || 'No Value'}</div>
+                                <div className="lead-footer">
+                                    <span
+                                        className={`status-label ${lead.statusLabel ? lead.statusLabel.toLowerCase() : 'normal'}`}
+                                        onClick={() => handleLabelClick(lead.id, lead.statusLabel || 'Normal')}
+                                    >
+                                        {lead.statusLabel || 'Normal'}
+                                    </span>
+                                    <div className="user-circle">
+                                        {lead.createdBy === 'Yassine Sabir' ? (
+                                            <img src={yassine} alt="Yassine Sabir" />
+                                        ) : lead.createdBy === 'Hasnaa Ettaki' ? (
+                                            <img src={hasnaa} alt="Hasnaa Ettaki" />
+                                        ) : (
+                                            <div className="default-circle">?</div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </Draggable>
-            ));
+                        )}
+                    </Draggable>
+                ))}
+            </>
+        );
     };
 
     if (isLoading) return <p>Loading...</p>;

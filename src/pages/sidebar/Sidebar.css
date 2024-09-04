@@ -89,5 +89,5 @@
 /* Ensure button does not change color on hover */
 .sidebar-toggle:hover {
   color: #000; /* Static black color */
-  background-color: #ffffff; /* Match background color */
+  background-color: #875EF8 !important; /* Match background color */
 }

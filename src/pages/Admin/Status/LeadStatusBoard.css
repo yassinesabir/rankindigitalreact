@@ -10,11 +10,11 @@
 /* Column styling */
 .status-column {
     position: relative; /* Ensure relative positioning for the placeholder */
-    flex: 0 0 19%;
-    margin: 0 10px;
+    flex: 0 0 20%; /* Adjusted for a better fit */
+    margin: 0 15px; /* Increased margin for spacing */
     border: 1px solid #ddd;
     border-radius: 15px;
-    padding: 15px;
+    padding: 20px; /* Increased padding for spacing */
     background-color: #fff; /* Use named color for better readability */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     min-height: 200px; /* Ensure enough space for dragged items */
@@ -25,10 +25,10 @@
 /* Header styling */
 .status-column h3 {
     text-align: left;
-    margin-bottom: 25px;
-    font-size: 1.25em;
+    margin-bottom: 10px; /* Reduced margin to fit the layout */
+    font-size: 1.5em; /* Increased font size for better visibility */
     color: #000;
-    margin-left: 3px;
+    margin-bottom: 30px;
 }
 
 /* Status icon styling */
@@ -40,20 +40,35 @@
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
+    margin-top: 8px;
 }
 
 /* Total estimated value styling */
 .total-value {
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 15px; /* Space between total value and leads */
-    color: #4CAF50;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    text-align: center;
+    text-align:left;
+    margin-bottom: 30px;
 }
+
+.line {
+    display: block;
+}
+
+.line.black {
+    color: #000; /* Black color for the first line */
+    margin-left: 5px;
+}
+
+.line.green {
+    color: #4CAF50; /* Green color for the second line */
+    margin-left: 5px;
+}
+
 
 /* Lead item styling */
 .lead-item {

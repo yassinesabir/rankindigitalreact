@@ -15,7 +15,8 @@ const PostLead = () => {
         entreprise: "",
         tag: "",
         description: "",
-        pdf: null // Added for file
+        pdf: null, // Added for file
+        valeurEstimee:"",
     });
 
     const [fileName, setFileName] = useState(""); // New state for file name
@@ -47,10 +48,35 @@ const PostLead = () => {
         }
     };
 
+    const validateFormData = () => {
+        // Validate email
+        if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+            toast.error("Email invalide");
+            return false;
+        }
+
+        // Validate telephone
+        if (!/^\d{9}$/.test(formData.telephone)) {
+            toast.error("Le numéro de téléphone doit comporter 9 chiffres");
+            return false;
+        }
+
+        // Validate valeurEstimee
+        if (isNaN(formData.valeurEstimee) || formData.valeurEstimee.trim() === "") {
+            toast.error("La valeur estimée doit être un nombre");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Create a FormData object
+        if (!validateFormData()) {
+            return;
+        }
+
         const dataToSend = new FormData();
         dataToSend.append('nom', formData.nom);
         dataToSend.append('email', formData.email);
@@ -58,23 +84,24 @@ const PostLead = () => {
         dataToSend.append('source', formData.source);
         dataToSend.append('entreprise', formData.entreprise);
         dataToSend.append('tag', formData.tag);
+        dataToSend.append('valeurEstimee', formData.valeurEstimee);
         dataToSend.append('description', formData.description);
         
         if (formData.pdf) {
-            dataToSend.append('file', formData.pdf); // Ensure this key matches what the backend expects
+            dataToSend.append('file', formData.pdf);
         }
-
+    
         try {
-            // POST request with multipart/form-data
             const response = await axiosInstance.post("/Lead", dataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+            console.log('Response:', response); // Example usage
             toast.success("Lead créé avec succès!");
-            setTimeout(() => navigate("/"), 2000); // Delay redirect to show toast
+            setTimeout(() => navigate("/"), 2000);
         } catch (error) {
-            console.error('Error:', error); // Log error details
+            console.error('Error:', error);
             toast.error("Erreur lors de la création du lead");
         }
     };
@@ -83,7 +110,6 @@ const PostLead = () => {
         <div className="post-lead-container">
             <h2>Ajouter Nouveau Lead</h2>
             <form onSubmit={handleSubmit}>
-                {/* Form fields here */}
                 <div className="form-row">
                     <div className="form-group">
                         <label htmlFor="formBasicNom">Nom Complet</label>
@@ -92,6 +118,7 @@ const PostLead = () => {
                             name="nom" 
                             value={formData.nom} 
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
 
@@ -102,6 +129,7 @@ const PostLead = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
                 </div>
@@ -109,12 +137,18 @@ const PostLead = () => {
                 <div className="form-row">
                     <div className="form-group">
                         <label htmlFor="formBasicTelephone">Téléphone</label>
-                        <input
-                            type="tel" 
-                            name="telephone"
-                            value={formData.telephone}
-                            onChange={handleInputChange}
-                        />
+                        <div className="input-container">
+                            <span className="phone-prefix">+212</span>
+                            <input
+                                type="tel"
+                                name="telephone"
+                                value={formData.telephone}
+                                onChange={handleInputChange}
+                                id="formBasicTelephone"
+                                pattern="\d{9}"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <div className="form-group">
@@ -126,6 +160,16 @@ const PostLead = () => {
                             onChange={handleInputChange}
                         />
                     </div>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="formBasicDescription">Description</label>
+                    <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        rows="4" // Default number of visible rows
+                    />
                 </div>
 
                 <div className="form-row">
@@ -152,13 +196,19 @@ const PostLead = () => {
 
                 <div className="form-row">
                     <div className="form-group">
-                        <label htmlFor="formBasicDescription">Description</label>
-                        <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleInputChange}
-                            rows="4" // Default number of visible rows
-                        />
+                        <label htmlFor="formBasicValeurEstimee">Valeur Estimee</label>
+                        <div className="input-container">
+                            <input
+                                type="text"
+                                name="valeurEstimee"
+                                value={formData.valeurEstimee}
+                                onChange={handleInputChange}
+                                id="formBasicValeurEstimee"
+                                pattern="\d+(\.\d{1,2})?" // Optional decimal part
+                                required
+                            />
+                            <span className="currency-symbol">MAD</span> {/* Adjust currency symbol as needed */}
+                        </div>
                     </div>
 
                     <div className="form-group">

@@ -20,7 +20,8 @@ const UpdateLead = () => {
         tag: "",
         description: "",
         statut: "Nouveau",
-        currentFile: ""
+        currentFile: "",
+        valeurEstimee: ""
     });
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState("");
@@ -66,8 +67,35 @@ const UpdateLead = () => {
         setFileName(file.name);
     };
 
+    const validateFormData = () => {
+        // Validate email
+        if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+            toast.error("Email invalide");
+            return false;
+        }
+
+        // Validate telephone
+        if (!/^\d{9}$/.test(formData.telephone)) {
+            toast.error("Le numéro de téléphone doit comporter 9 chiffres");
+            return false;
+        }
+
+        // Validate valeurEstimee
+        if (isNaN(formData.valeurEstimee) || formData.valeurEstimee.trim() === "") {
+            toast.error("La valeur estimée doit être un nombre");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validateFormData()) {
+            return;
+        }
+
         try {
             const updateResponse = await axiosInstance.patch(`Lead/${id}`, formData);
             if (updateResponse.status === 200) {
@@ -116,27 +144,24 @@ const UpdateLead = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="formBasicTelephone">Téléphone</label>
-                        <input
-                            type="tel"
-                            name="telephone"
-                            value={'+212 '+formData.telephone}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="formBasicSource">Source</label>
-                        <input
-                            type="text"
-                            name="source"
-                            value={formData.source}
-                            onChange={handleInputChange}
-                        />
+                        <div className="input-container">
+                            <span className="phone-prefix">+212</span>
+                            <input
+                                type="tel"
+                                name="telephone"
+                                value={formData.telephone}
+                                onChange={handleInputChange}
+                                id="formBasicTelephone"
+                                pattern="\d{9}"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <div className="form-group">
@@ -149,9 +174,19 @@ const UpdateLead = () => {
                         />
                     </div>
 
+                    <div className="form-group">
+                        <label htmlFor="formBasicDescription">Description</label>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+
                     <button type="submit" className="submit-button">
                         Modifier
                     </button>
+
                 </div>
 
                 <div className="form-right">
@@ -181,10 +216,27 @@ const UpdateLead = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="formBasicDescription">Description</label>
-                        <textarea
-                            name="description"
-                            value={formData.description}
+                        <label htmlFor="formBasicValeurEstimee">Valeur Estimee</label>
+                        <div className="input-container2">
+                            <input
+                                type="text"
+                                name="valeurEstimee"
+                                value={formData.valeurEstimee}
+                                onChange={handleInputChange}
+                                id="formBasicValeurEstimee"
+                                pattern="\d+(\.\d{1,2})?" // Optional decimal part
+                                required
+                            />
+                            <span className="currency-symbol">MAD</span>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="formBasicSource">Source</label>
+                        <input
+                            type="text"
+                            name="source"
+                            value={formData.source}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -208,6 +260,7 @@ const UpdateLead = () => {
                         />
                         {fileName && <div className="file-info">{fileName}</div>}
                     </div>
+
                 </div>
             </form>
             <ToastContainer />

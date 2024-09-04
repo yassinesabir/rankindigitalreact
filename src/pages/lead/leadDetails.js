@@ -19,7 +19,7 @@ const LeadDetails = () => {
   const { leadId } = useParams();
   const axiosInstance = useAxios();
   const [lead, setLead] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message] = useState('');
   const [error, setError] = useState('');
 
   const fetchLead = useCallback(async () => {

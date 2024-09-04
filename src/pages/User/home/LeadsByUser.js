@@ -2,15 +2,17 @@ import React, { useState, useCallback } from 'react';
 import { Button, Container, Row, Col, Table, Form, Pagination, Modal, Dropdown, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import useAxios from '../../security/axiosInstance';
+import useAxios from '../../../security/axiosInstance';
 import { useKeycloak } from '@react-keycloak/web'; // Keycloak hook
-import SwipeableRow from './SwipeableRow';
-import ImportLeads from './UploadFile'; // Import the new component
-import './Dash.css';
+import SwipeableRow from '../../Admin/home/SwipeableRow';
+import ImportLeads from '../../Admin/home/UploadFile'; // Import the new component
+import '../../Admin/home/Dash.css';
 
-import nouveauIcon from '../assets/Icons/NouveauIcon.png';
-import enCoursIcon from '../assets/Icons/EnCoursIcon.png';
-import gagneIcon from '../assets/Icons/GagneIcon.png';
+import nouveauIcon from '../../assets/Icons/NouveauIcon.png';
+import enCoursIcon from '../../assets/Icons/EnCoursIcon.png';
+import gagneIcon from '../../assets/Icons/GagneIcon.png';
+import abandonnéIcon from '../../assets/Icons/Abandonné.png';
+
 
 const fetchLeadsByUser = async (axiosInstance, keycloakToken, searchTerm = '', page = 1, pageSize = 10, filterDateRange = '') => {
   try {
@@ -108,6 +110,10 @@ const LeadsByUser = () => {
     navigate(`/lead/${leadId}`);
   };
 
+  const handleDoubleClick = (leadId) => {
+    navigate(`/lead/${leadId}/details`);
+  };
+
   const handleSearchChange = useCallback((event) => {
     setSearchTerm(event.target.value);
     setCurrentPage(1);
@@ -149,6 +155,8 @@ const LeadsByUser = () => {
         return enCoursIcon;
       case 'Gagné':
         return gagneIcon;
+      case 'Abandonné':
+        return abandonnéIcon;
       default:
         return null;
     }
@@ -230,6 +238,7 @@ const LeadsByUser = () => {
                   key={lead.id}
                   onSwipeLeft={() => handleSwipeLeft(lead.id)}
                   onSwipeRight={() => handleSwipeRight(lead.id)}
+                  onDoubleClick={() => handleDoubleClick(lead.id)}
                   isModalOpen={showConfirmModal && lead.id === swipedLeadId}
                 >
                   <td className="text-center">{formatID(lead.id)}</td>

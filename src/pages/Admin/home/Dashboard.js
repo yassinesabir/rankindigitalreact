@@ -4,14 +4,14 @@ import React, { useState, useCallback } from 'react';
 import { Button, Container, Row, Col, Table, Form, Pagination, Modal, Dropdown, Toast, ToastContainer } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import useAxios from '../../security/axiosInstance';
+import useAxios from '../../../security/axiosInstance';
 import SwipeableRow from './SwipeableRow';
 import ImportLeads from './UploadFile';
 import './Dash.css';
-import nouveauIcon from '../assets/Icons/NouveauIcon.png';
-import enCoursIcon from '../assets/Icons/EnCoursIcon.png';
-import gagneIcon from '../assets/Icons/GagneIcon.png';
-import abandonnéIcon from '../assets/Icons/Abandonné.png';
+import nouveauIcon from '../../assets/Icons/NouveauIcon.png';
+import enCoursIcon from '../../assets/Icons/EnCoursIcon.png';
+import gagneIcon from '../../assets/Icons/GagneIcon.png';
+import abandonnéIcon from '../../assets/Icons/Abandonné.png';
 
 const fetchLeads = async (axiosInstance, searchTerm = '', page = 1, pageSize = 10, filterDateRange = '') => {
   const response = await axiosInstance.get("/Leads");
@@ -229,7 +229,14 @@ const Dashboard = () => {
                 >
                   <td className="text-center">{formatID(lead.id)}</td>
                   <td className="text-center">{lead.nom}</td>
-                  <td className="text-center">{lead.email}</td>
+                  <td className="text-center, custom-link">
+                    <a
+                      href={`mailto:${lead.email}`} // Adds the mailto link for Gmail
+                      style={{ color: 'inherit', textDecoration: 'none' }} // Optional: inherit color and remove underline
+                    >
+                    {lead.email}
+                    </a>
+                  </td>
                   <td className="text-center">{lead.source}</td>
                   <td className="text-center">{lead.entreprise}</td>
                   <td className="text-center">
@@ -239,9 +246,10 @@ const Dashboard = () => {
                       style={{ width: '24px', height: '24px' }}
                     />
                   </td>
-                </SwipeableRow>
+               </SwipeableRow>
               ))}
             </tbody>
+
           </Table>
           <Pagination className="justify-content-center">
             <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />

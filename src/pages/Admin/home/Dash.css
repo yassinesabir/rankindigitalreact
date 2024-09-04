@@ -179,3 +179,15 @@
     border-radius: 8px;
   }
   
+/* Default styling for email links */
+.custom-table tbody td a.email-link {
+  color: #007bff; /* Default color for the email link */
+  text-decoration: none; /* Remove underline from the link */
+}
+
+/* Hover styling for email links */
+.custom-table tbody td a.email-link:hover,
+.custom-table tbody td a.email-link:focus {
+  color: #0056b3; /* Color change on hover */
+  text-decoration: underline; /* Underline on hover */
+}

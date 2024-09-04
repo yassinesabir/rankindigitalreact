@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import useAxios from '../../security/axiosInstance';
+import useAxios from '../../../security/axiosInstance';
 
 const ImportLeads = ({ show, onHide }) => {
     const [file, setFile] = useState(null);

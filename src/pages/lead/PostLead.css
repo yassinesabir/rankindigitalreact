@@ -110,3 +110,48 @@ h2 {
     color: #333;
     font-size: 14px;
 }
+
+.input-container {
+    position: relative; /* Position relative to contain the absolute child */
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    padding-left: 60px; /* Extra space for phone prefix */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+}
+
+.input-container2 {
+    position: relative; /* Position relative to contain the absolute child */
+}
+
+.input-container2 input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-sizing: border-box; /* Ensure padding doesn’t affect width */
+}
+
+.phone-prefix {
+    position: absolute;
+    top: 12px; /* Align with the input field */
+    left: 12px; /* Space from the left edge of the container */
+    color: #333; /* Color of the prefix text */
+    font-size: 18px; /* Font size for the prefix */
+    pointer-events: none; /* Ensure it doesn’t interfere with input interactions */
+}
+
+.currency-symbol {
+    position: absolute;
+    top: 10px; /* Adjust as needed to align with the input field */
+    right: 10px; /* Adjust as needed to position on the right */
+    color: #333; /* Color of the currency symbol */
+    font-size: 18px; /* Font size for the currency symbol */
+    pointer-events: none; /* Ensure it doesn’t interfere with input interactions */
+}

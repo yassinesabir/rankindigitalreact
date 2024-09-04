@@ -39,7 +39,7 @@ const AntDesignHeader = () => {
       </Header>
 
       <Modal
-        visible={showModal}
+        open={showModal}
         onCancel={handleCloseModal}
         footer={null}
         centered

@@ -99,3 +99,13 @@
     overflow-wrap: break-word; /* Ensures text wraps correctly */
     word-break: break-word; /* Handles long words that may overflow */
 }
+
+.mt-3 {
+    background-color: #875EF8;
+    border-color: #875EF8;
+}
+
+.mt-3 :focus{
+    background-color: #875EF8 !important;
+    border-color: #875EF8 !important;
+}
