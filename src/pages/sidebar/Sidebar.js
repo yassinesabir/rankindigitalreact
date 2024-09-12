@@ -20,8 +20,9 @@ const items = [
   { key: '4', icon: imageIcon(bullhorn), label: 'Publicités', link: '/Ads' },
   { key: '5', icon: imageIcon(calendar), label: 'Calendrier', link: '/Calendar' },
   { key: '6', icon: imageIcon(bell), label: 'Notification', link: '/Notification' },
-  { key: '7', icon: imageIcon(chatting), label: 'Messagerie', link: '/chat' },
+  { key: '7', icon: imageIcon(chatting), label: 'Messagerie', link: '/chat' }, // Added Chat
 ];
+
 
 const pathToKeyMap = {
   '/': '1',
