@@ -14,10 +14,15 @@ import UpdateLead from './pages/lead/UpdateLead';
 import LeadDetails from './pages/lead/leadDetails.js';
 import RedirectBasedOnUsername from '../src/pages/Admin/security/RoleBasedRedirect.js'; 
 import Redirect from '../src/pages/User/security/usersStatusBoard.js';
-import RedirectBasedOnName from './pages/Admin/security/NameBasedRedirect.js'; 
+import RedirectBasedOnName from './pages/Admin/security/NameBasedRedirect.js';
+import Redirect2 from '../src/pages/User/security/usersNotification.js';
 import NoMatch from './pages/noMatch/NoMatch';
 import Chat from './pages/chat/Chat.js';
-import Notification from './pages/Notification.js'
+import Notification from './pages/Admin/notification/Notification.js';
+import CMNotifications from './pages/User/notification/Notification.js';
+import Calendar from './pages/MeetingComponent.js';
+
+
 
 
 function App() {
@@ -43,6 +48,11 @@ function App() {
               <Charts />
             </RedirectBasedOnName>
           } />
+          <Route path="/Notification" element={
+            <Redirect2>
+              <Notification />
+            </Redirect2>
+          } />
           <Route path="/Commercial/Leads" element={<CmHome />} />
           <Route path="/Commercial/Statuts" element={<CmStatus />} />
           <Route path="/Commercial/Charts" element={<CmCharts />} />
@@ -51,7 +61,8 @@ function App() {
           <Route path="/lead/:leadId/details" element={<LeadDetails />} />
           <Route path="*" element={<NoMatch />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/Notification" element={<Notification />} />
+          <Route path="/Calendar" element={<Calendar />} />
+          <Route path="/Commercial/Notifications" element={<CMNotifications />} />
         </Routes>
       </div>
     </div>

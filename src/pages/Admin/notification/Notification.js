@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useAxios from '../security/axiosInstance'; // Import your axios instance hook
+import useAxios from '../../../security/axiosInstance'; // Import your axios instance hook
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
@@ -25,6 +25,7 @@ const Notification = () => {
                 const response = await axiosInstance.get('/leads'); // Adjust the endpoint as necessary
                 setLeads(response.data);
                 setFilteredLeads(response.data);
+                toast.success('Leads récupérés avec succès!');
             } catch (error) {
                 console.error('Error fetching leads:', error);
                 toast.error('Erreur lors de la récupération des leads');
@@ -35,6 +36,7 @@ const Notification = () => {
             try {
                 const response = await axiosInstance.get('/email-subjects'); // Adjust the endpoint as necessary
                 setSubjects(response.data);
+                toast.success('Sujets récupérés avec succès!');
             } catch (error) {
                 console.error('Error fetching subjects:', error);
                 toast.error('Erreur lors de la récupération des sujets');

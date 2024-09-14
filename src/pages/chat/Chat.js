@@ -218,6 +218,13 @@ const Chat = () => {
     setSearchTerm(e.target.value);
   };
 
+  const truncateMessage = (message, maxLength) => {
+    if (message.length > maxLength) {
+      return message.substring(0, maxLength) + '...';
+    }
+    return message;
+  };
+
   const filteredMessages = (selectedUser ? messages : broadcastMessages).filter(message => {
     const messageText = message.message || '';
     return messageText.toLowerCase().includes(searchTerm.toLowerCase());
@@ -257,7 +264,9 @@ const Chat = () => {
                   title={user.name}
                   description={
                     <div className="chat-user-list-item-description">
-                      <div className="chat-user-list-item-message">{user.lastMessage}</div>
+                      <div className="chat-user-list-item-message">
+                        {truncateMessage(user.lastMessage, 14)}
+                      </div>
                       {user.lastMessageTimestamp && (
                         <div className="chat-user-list-item-timestamp">
                           {formatDate(user.lastMessageTimestamp)}
@@ -302,14 +311,14 @@ const Chat = () => {
             <div ref={messagesEndRef} />
           </div>
           <div className="chat-message-input">
-          <TextArea
-            rows={1}
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Type your message..."
-            className="chat-textarea"
-            autoSize={{ minRows: 1, maxRows: 5 }} // Adjust maxRows as needed
-          />
+            <TextArea
+              rows={1}
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              placeholder="Type your message..."
+              className="chat-textarea"
+              autoSize={{ minRows: 1, maxRows: 5 }} // Adjust maxRows as needed
+            />
 
             <Button
               type="primary"

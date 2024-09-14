@@ -33,6 +33,7 @@ const pathToKeyMap = {
   '/Ads': '4',
   '/Calendar': '5',
   '/Notification': '6',
+  '/Commercial/Notifications': '6',
   '/chat': '7',
 };
 
